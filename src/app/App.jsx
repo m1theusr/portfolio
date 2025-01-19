@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./shared/Navbar";
-import Footer from "./shared/Footer";
+import Navbar from "../shared/Navbar";
+import Footer from "../shared/Footer";
+import About from "./About";
 
 const HomePage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -69,6 +70,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <About />
       <Footer />
     </div>
   );
