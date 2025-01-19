@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: site-portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:3000"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+    restart: always
