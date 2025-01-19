@@ -22,22 +22,24 @@ const Navbar = ({ isScrolled }) => {
   ];
 
   return (
-    <nav
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl p-3 z-50 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
-        isScrolled ? "backdrop-blur-xl bg-black-80" : "backdrop-blur-none bg-white/30"
-      }`}
-    >
+<nav
+  className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl p-3 z-50 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
+    isScrolled ? "backdrop-blur-xl bg-black/30" : "backdrop-blur-none bg-white/30"
+  } 
+  ${isOpen ? "md:hidden" : ""}`}
+>
+
       <div className="flex justify-between items-center">
         {/* Logo */}
         <img src="./src/assets/logo.png" alt="Logo" className="h-12 px-5" />
 
         {/* Desktop Links */}
-        <div className="hidden md:flex space-x-6 text-gray-800">
+        <div className="hidden md:flex space-x-6 text-white-600">
           {navLinks.map(({ href, label }) => (
             <a
               key={href}
               href={href}
-              className="hover:text-green-500 transition-colors duration-200"
+              className="hover:text-[rgb(251,255,0)] transition-colors duration-200"
             >
               {label}
             </a>
@@ -47,7 +49,7 @@ const Navbar = ({ isScrolled }) => {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="md:hidden p-2 w-10 h-10 text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="md:hidden p-2 w-10 h-10 text-gray-500 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
           aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
         >
