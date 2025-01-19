@@ -1,18 +1,30 @@
-name: Deploy to Oracle Cloud Infrastructure
+name: Deploy to Oracle Cloud VM
 
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to Oracle Cloud Infrastructure
-        uses: oracle-actions/oraclecloud-deploy@v1
-        with:
-          cloud-id: ocid1.cloud.oracle.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          tenancy-id: ocid1.tenancy.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          user-id: ocid1.user.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    - name: Check out code from GitHub
+      uses: actions/checkout@v2
+
+    - name: Set up SSH agent
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Install SSH client
+      run: sudo apt-get install -y openssh-client
+
+    - name: Deploy to Oracle Cloud VM
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME_SSH }}@${{ secrets.HOST_SSH }} << 'EOF'
+          cd /path/to/app
+          git pull origin main
+          docker-compose down
+          docker-compose up -d
+        EOF
