@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Animação de digitação */
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 227px;
+  }
+}
+
+/* Efeito de piscar do cursor */
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typing-effect {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  /* Adiciona o cursor de digitação */
+  width: 0;
+  animation:
+    typing 1s steps(20) 1s 1 normal both,
+    blink 0.70s step-end infinite;
+
+  text-decoration: underline;
+  text-decoration-color: rgb(251, 255, 0);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+
+}
