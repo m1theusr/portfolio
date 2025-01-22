@@ -23,7 +23,7 @@ const Navbar = ({ isScrolled }) => {
 
   return (
 <nav
-  className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl p-3 z-50 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
+  className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl p-3 z-50 h-20 rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
     isScrolled ? "backdrop-blur-xl bg-black/30" : "backdrop-blur-none bg-white/30"
   } 
   ${isOpen ? "md:hidden" : ""}`}
@@ -75,14 +75,14 @@ const Navbar = ({ isScrolled }) => {
       {/* Mobile Menu */}
       <div
         className={`md:hidden mt-2 px-4 py-3 rounded transition-all duration-500 ease-in-out ${
-          isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+          isOpen ? "backdrop-blur-xl bg-black/10 opacity-100 translate-y-0" : "backdrop-blur-none bg-white/30 opacity-0 -translate-y-4"
         }`}
       >
         {navLinks.map(({ href, label }) => (
           <a
             key={href}
             href={href}
-            className="block py-2 px-3 text-gray-800 rounded hover:bg-[rgb(251,255,0)]"
+            className="block py-2 px-3 text-white rounded hover:bg-[rgb(251,255,0)]"
           >
             {label}
           </a>

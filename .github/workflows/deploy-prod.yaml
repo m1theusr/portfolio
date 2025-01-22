@@ -18,26 +18,22 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Install SSH client and Docker Compose
+    - name: Install required tools
       run: |
         sudo apt-get update
+        sudo apt-get install -y gh
 
     - name: Deploy to Oracle Cloud VM
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME_SSH }}@${{ secrets.HOST_SSH }} << 'EOF'
-          # Navegar para o diretório onde o repositório está
           cd /home/app
-          
-          # Verificar se o repositório já foi clonado
+          export GH_TOKEN=${{ secrets.GH_TOKEN }}
+          gh auth login --with-token <<< $GH_TOKEN
           if [ ! -d ".git" ]; then
-            # Clonar o repositório se ele não existir
-            git clone git@github.com:${{ secrets.REPOSITORY }} .
+            gh repo clone m1theusr/portfolio .
           else
-            # Atualizar o repositório com o git pull
-            git pull origin main
+            gh repo sync m1theusr/portfolio
           fi
-          
-          # Parar e remover containers antigos, e iniciar novos
           docker compose down
           docker compose up -d
         EOF
