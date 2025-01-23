@@ -36,7 +36,7 @@ const HomePage = () => {
             <span
               className="overflow-hidden border-r-2 border-[rgb(251,255,0)] whitespace-nowrap max-w-[13ch] animate-typing text-2xl font-bold text-white"
             >
-              <span className="block group-[data-text='0']:block group-[data-text='1']:hidden">
+              <span className="block group-[data-text='0']:block group-[data-text='1']:hidden underline decoration-[rgb(251,255,0)]">
                 DevOps Engineer
               </span>
               <span className="hidden group-[data-text='1']:block group-[data-text='0']:hidden">
