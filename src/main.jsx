@@ -5,7 +5,7 @@ import HomePage from './app/App'
 import Footer from './shared/Footer'
 import About from './app/About'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HomePage />
     <About />
