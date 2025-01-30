@@ -3,38 +3,25 @@
 @tailwind utilities;
 
 
-/* Animação de digitação */
-@keyframes typing {
-  0% {
-    width: 0;
-  }
-
-  100% {
-    width: 319px;
-  }
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
 }
 
-/* Efeito de piscar do cursor */
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
+.text-gradient {
+  background: linear-gradient(90deg, rgb(95, 95, 95), rgb(179, 179, 179));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.typing-effect {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #fff;
-  /* Adiciona o cursor de digitação */
-  width: 0;
-  animation:
-    typing 2s steps(20) 1s 1 normal both,
-    blink 0.70s step-end infinite;
+@media (max-width: 768px) {
+  .responsive-text {
+    font-size: 4rem;
+  }
 
-  text-decoration: underline;
-  text-decoration-color: rgb(251, 255, 0);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
-
+  .responsive-p {
+    font-size: 1.5rem;
+  }
 }
