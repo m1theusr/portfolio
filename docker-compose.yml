@@ -41,5 +41,5 @@ services:
 
 networks:
   default:
-    external:
-      name: network-portfolio
+    external: true
+    name: network-portfolio
