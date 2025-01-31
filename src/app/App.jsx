@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import Navbar from "../shared/Navbar";
+import profileImg from '../assets/perfil-mobile.jpg';
 
 const HomePage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,37 +26,44 @@ const HomePage = () => {
         style={{ backgroundImage: "url('./src/assets/hero-bg1.png')" }}
       >
         <div className="max-w-7xl container mx-auto px-1">
-          <div className="absolute top-10 left-1/2 transform -translate-x-1/2 md:hidden">
-            <div className="w-32 h-32 rounded-full bg-white flex items-center justify-center">
-              {/* Substitua pela URL da imagem que você deseja */}
-              <img
-                src="../assets/img-removebg.png"
-                alt="Matheus Rodrigues"
-                className="w-24 h-24 rounded-full object-cover"
-              />
+          <motion.div
+            className="absolute top-24 inset-x-0 flex justify-center md:hidden"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <div className="w-32 h-32 rounded-full flex items-center justify-center">
+              <img src={profileImg} className="w-24 h-24 rounded-full object-cover" alt="Profile" />
             </div>
-          </div>
+          </motion.div>
 
-          <motion.h1
-            className="pb-3 text-center md:text-left pl-6 text-7xl font-bold mb-5 text-gradient responsive-text"
+          <motion.div
+            className="relative flex flex-col justify-center h-full px-4 text-center md:text-left"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            Matheus Rodrigues
-          </motion.h1>
+            <motion.h1
+              className="leading-[1.1] pb-3 text-6xl sm:text-5xl md:text-7xl font-bold mb-5 text-gradient"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+            >
+              Matheus Rodrigues
+            </motion.h1>
 
-          <motion.p
-            className="relative flex pb-3 text-center md:text-left pl-6 items-center text-2xl responsive-p"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            <span className="text-gradient text-white mr-2">I'm</span>
-            <span className="text-gradient overflow-hidden whitespace-nowrap max-w-[13ch] animate-typing text-2xl font-bold text-white">
-              DevOps | SRE
-            </span>
-          </motion.p>
+            <motion.p
+              className="relative flex flex-col sm:flex-row items-center md:items-start md:justify-start text-2xl font-bold text-white"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <span className="text-gradient mr-2">I'm</span>
+              <span className="text-gradient overflow-hidden whitespace-nowrap max-w-[13ch] animate-typing">
+                DevOps | SRE
+              </span>
+            </motion.p>
+          </motion.div>
 
           <motion.div
             className="flex flex-col items-center md:items-start md:pl-5 space-y-4 mt-6"
