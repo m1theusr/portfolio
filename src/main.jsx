@@ -6,13 +6,14 @@ import Footer from './shared/Footer'
 import Projects from './app/Projects'
 import AboutMe from './app/About'
 import Resume from './app/Resume'
+import Navbar from './shared/Navbar'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Navbar />
     <HomePage />
     <AboutMe />
     <Projects />
-    <Resume />
     <Footer />
   </StrictMode>,
 )
