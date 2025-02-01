@@ -21,8 +21,8 @@ const Navbar = ({ isScrolled }) => {
 
   const navLinks = [
     { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#portfolio", label: "Portfolio" },
+    { href: "#aboutMe", label: "About" },
+    { href: "#Projects", label: "Projects" },
     { href: "#resume", label: "Resume" },
     { href: "#contact", label: "Contact" },
   ];

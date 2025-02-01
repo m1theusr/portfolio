@@ -7,14 +7,12 @@ const Resume = () => {
     useEffect(() => {
         AOS.init({ duration: 1000, once: true });
     }, []);
-
-    // Componente para animar a contagem dos números
     const AnimatedCounter = ({ value }) => {
         const [count, setCount] = useState(0);
 
         useEffect(() => {
             let start = 0;
-            const duration = 1500; // Tempo total da animação (ms)
+            const duration = 1500;
             const stepTime = Math.abs(Math.floor(duration / value));
 
             const timer = setInterval(() => {
@@ -29,7 +27,6 @@ const Resume = () => {
         return <span>{count}%</span>;
     };
 
-    // Componente para animar a barra de progresso
     const ProgressBar = ({ value }) => {
         return (
             <motion.div
@@ -42,9 +39,9 @@ const Resume = () => {
     };
 
     return (
-        <main className="bg-black">
+        <main id="resume" className="bg-black">
             <div className="py-16 text-center" data-aos="fade">
-                <div className="text-white container mx-auto">
+                <div className="text-[rgb(251,255,0)]    container mx-auto">
                     <h1 className="text-4xl font-bold">Resume</h1>
                     <p className="mt-4 text-lg text-white">Text</p>
                 </div>
@@ -53,7 +50,7 @@ const Resume = () => {
             <section id="skills" className="py-16">
                 <div className="container mx-auto text-center" data-aos="fade-up">
                     <h2 className="text-3xl font-semibold">Skills</h2>
-                    <div className="text-xl text-gray-600 mt-2">
+                    <div className="text-xl text-gray-400 mt-2">
                         <span>My</span> <span className="font-bold">Skills</span>
                     </div>
                 </div>

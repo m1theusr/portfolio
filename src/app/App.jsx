@@ -6,7 +6,7 @@ import profileImg from '../assets/perfil-mobile.jpg';
 
 const HomePage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [loading, setLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = () => {
@@ -20,7 +20,7 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    const images = [profileImg]; // Lista de imagens que você deseja monitorar
+    const images = [profileImg];
 
     let loadedImages = 0;
 
@@ -30,13 +30,13 @@ const HomePage = () => {
       image.onload = () => {
         loadedImages++;
         if (loadedImages === images.length) {
-          setLoading(false); // Tudo carregado, define o estado de loading para false
+          setLoading(false);
         }
       };
       image.onerror = () => {
         loadedImages++;
         if (loadedImages === images.length) {
-          setLoading(false); // Mesmo se ocorrer erro no carregamento, atualiza o estado
+          setLoading(false);
         }
       };
     });
@@ -51,7 +51,7 @@ const HomePage = () => {
       ) : (
         <>
           <Navbar isScrolled={isScrolled} />
-          <div
+          <div id="home"
             className="relative bg-cover bg-black bg-center text-white h-screen flex items-center parallax background-noise"
             style={{ backgroundImage: "url('./src/assets/hero-bg1.png')" }}
           >
