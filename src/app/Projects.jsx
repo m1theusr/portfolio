@@ -52,7 +52,7 @@ export default function CaseStudyCard() {
         <p className="mt-4 text-lg text-white">Scroll Down</p>
       </div>
 
-      <div className="relative flex flex-col items-center space-y-12 mt-12">
+      <div className="p-4 container mx-auto relative flex flex-col items-center space-y-12 mt-12">
         {projects.map((project, index) => (
           <div
             key={index}
