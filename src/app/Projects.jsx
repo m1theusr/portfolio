@@ -58,10 +58,10 @@ export default function CaseStudyCard() {
             key={index}
             ref={(el) => (cardsRef.current[index] = el)}
             data-index={index}
-            className={`relative w-full max-w-3xl p-8 rounded-2xl shadow-lg transition-all duration-700 ease-in-out transform 
+            className={`backdrop-blur-lg relative w-full max-w-3xl p-8 rounded-2xl shadow-lg transition-all duration-700 ease-in-out transform 
               ${visibleIndexes.includes(index) ? "opacity-100 translate-y-0 scale-100 z-10" : "opacity-0 translate-y-10 scale-95 z-0"}
               ${visibleIndexes.includes(index - 1) ? "-mt-20" : ""}`}
-            style={{ background: " linear-gradient(to right,rgb(39, 39, 41),rgb(53, 48, 39))" }}
+            style={{ background: "linear-gradient(to right,rgba(39, 39, 41, 0.28),rgba(53, 48, 39, 0.56))" }}
           >
             <div className="absolute inset-0  opacity-10 pointer-events-none" />
             <div className="flex flex-col md:flex-row items-center gap-6">
