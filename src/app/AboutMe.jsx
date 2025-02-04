@@ -11,9 +11,9 @@ const AboutMe = () => {
   }, []);
 
   return (
-    <div id= "aboutMe" className="flex justify-center items-center h-screen bg-black">
+    <div id= "aboutMe" className="flex justify-center items-center min-h-screen" data-aos="fade-up">
       <div
-        className="bg-black p-8 rounded-lg shadow-lg max-w-2xl w-full"
+        className="p-8 rounded-lg shadow-lg max-w-2xl w-full"
         data-aos="fade-up"
       >
         <h1
