@@ -24,8 +24,8 @@ const Navbar = ({ isScrolled }) => {
 
   return (
     <nav
-      className={`fixed top-4 left-0 w-full p-4 z-50 h-20 bg-black  shadow-lg transition-all duration-300 ease-in-out
-      ${isScrolled ? "backdrop-blur-x text-white" : "text-white"}`}
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl p-3 z-50 h-20 rounded-lg shadow-lg transition-all duration-300 ease-in-out backdrop-blur-xl
+      ${isScrolled ? "bg-white/10 text-white" : " bg-white/10 text-white"}`}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
         <img src="./src/assets/logo.png" alt="Logo" className="h-12" />
@@ -68,7 +68,7 @@ const Navbar = ({ isScrolled }) => {
 
       <div
         className={`md:hidden mt-2 px-4 py-3 rounded transition-all duration-500 ease-in-out ${
-          isOpen ? "bg-black bg-opacity-90 text-white opacity-100" : "opacity-0 h-0 overflow-hidden"
+          isOpen ? "bg-black/10 text-white opacity-100" : "opacity-0 h-0 overflow-hidden"
         }`}
       >
         {navLinks.map(({ href, label }) => (

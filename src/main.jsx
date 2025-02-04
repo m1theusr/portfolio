@@ -1,19 +1,11 @@
-import React, { StrictMode } from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import HomePage from './app/App'
-import Footer from './shared/Footer'
-import Projects from './app/Projects'
-import AboutMe from './app/About'
-import Resume from './app/Resume'
-import Navbar from './shared/Navbar'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Navbar />
-    <HomePage />
-    <AboutMe />
-    <Projects />
-    <Footer />
-  </StrictMode>,
-)
+const root = ReactDOM.createRoot(document.getElementById("app"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
