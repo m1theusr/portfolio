@@ -5,6 +5,7 @@ import Footer from "../shared/Footer";
 import HomePage from "./HomePage";
 import AboutMe from "./AboutMe";
 import Projects from "./Projects";
+import SystemSection from "./SystemSection";
 
 const Layout = () => {
   return (
@@ -15,6 +16,7 @@ const Layout = () => {
         <HomePage />
         <AboutMe />
         <Projects />
+        <SystemSection />
         <Footer />
       </div>
     </>

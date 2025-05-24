@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-scroll";
 
 const Navbar = ({ isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,11 +16,12 @@ const Navbar = ({ isScrolled }) => {
   }, []);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#aboutMe", label: "About" },
-    { href: "#Projects", label: "Projects" },
-    { href: "#resume", label: "Resume" },
-    { href: "#contact", label: "Contact" },
+    { href: "home", label: "Home" },
+    { href: "aboutMe", label: "About" },
+    { href: "Projects", label: "Projects" },
+    { href: "system", label: "System" },
+    { href: "resume", label: "Resume" },
+    { href: "https://cal.com/m1theusr", label: "Contact", external: true },
   ];
 
   return (
@@ -30,55 +32,90 @@ const Navbar = ({ isScrolled }) => {
       <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
         <img src="./src/assets/logo.png" alt="Logo" className="h-12" />
         <div className="hidden md:flex space-x-6">
-          {navLinks.map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              className="hover:text-[rgb(251,255,0)] transition-colors duration-200"
-            >
-              {label}
-            </a>
+          {navLinks.map(({ href, label, external }) => 
+            external ? (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[rgb(251,255,0)] transition-colors duration-200 cursor-pointer"
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                key={href}
+                to={href}
+                spy={true}
+                smooth={true}
+                duration={500}
+                className="hover:text-[rgb(251,255,0)] transition-colors duration-200 cursor-pointer"
+              >
+                {label}
+              </Link>
           ))}
         </div>
 
         <button
           type="button"
-          className="md:hidden p-2 w-10 h-10 text-white rounded-md focus:outline-none"
+          className="md:hidden text-white focus:outline-none flex items-center justify-center w-6 h-6"
           aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Menu"
         >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-5 h-5"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
-            aria-hidden="true"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 1h15M1 7h15M1 13h15"
+          <div className="relative w-6 h-6">
+            <span
+              className={`absolute left-0 h-0.5 w-6 bg-current transform transition-all duration-300 ease-in-out ${
+                isOpen ? 'rotate-45 translate-y-2.5' : 'translate-y-0'
+              }`}
+              style={{ top: '2px' }}
             />
-          </svg>
+            <span
+              className={`absolute left-0 h-0.5 w-6 bg-current transform transition-all duration-300 ease-in-out ${
+                isOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+              style={{ top: '10px' }}
+            />
+            <span
+              className={`absolute left-0 h-0.5 w-6 bg-current transform transition-all duration-300 ease-in-out ${
+                isOpen ? '-rotate-45 -translate-y-2.5' : 'translate-y-0'
+              }`}
+              style={{ top: '18px' }}
+            />
+          </div>
         </button>
       </div>
 
       <div
-        className={`md:hidden mt-2 px-4 py-3 rounded transition-all duration-500 ease-in-out ${
-          isOpen ? "bg-black/10 text-white opacity-100" : "opacity-0 h-0 overflow-hidden"
+        className={`absolute top-full left-0 w-full p-4 transition-all duration-300 ${
+          isOpen ? "bg-black/80 backdrop-blur-md text-white opacity-100" : "opacity-0 h-0 overflow-hidden"
         }`}
       >
-        {navLinks.map(({ href, label }) => (
-          <a
-            key={href}
-            href={href}
-            className="block py-2 px-3 rounded hover:bg-[rgb(251,255,0)]"
-          >
-            {label}
-          </a>
+        {navLinks.map(({ href, label, external }) => 
+            external ? (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block py-2 px-3 rounded hover:bg-[rgb(251,255,0)] cursor-pointer"
+                onClick={() => setIsOpen(false)}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                key={href}
+                to={href}
+                spy={true}
+                smooth={true}
+                duration={500}
+                className="block py-2 px-3 rounded hover:bg-[rgb(251,255,0)] cursor-pointer"
+                onClick={() => setIsOpen(false)}
+              >
+                {label}
+              </Link>
         ))}
       </div>
     </nav>
