@@ -5,19 +5,12 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        typing: 'typing 7s steps(16, end) infinite, blink 1s step-end infinite',
+        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
-        typing: {
-          '0%': { width: '0ch' },
-          '25%': { width: '16ch' },
-          '50%': { width: '0ch' },
-          '75%': { width: '16ch' },
-          '100%': { width: '0ch' },
-        },
-        blink: {
-          '50%': { borderColor: 'transparent' },
-          '100%': { borderColor: 'white' },
+        pulse: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0.5 },
         },
       },
     },

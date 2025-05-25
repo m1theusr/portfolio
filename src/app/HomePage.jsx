@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import profileImg from '../assets/perfil-mobile.jpg';
 import homeImg from '../assets/home-eu.png';
 import SystemStatus from '../components/system/SystemStatus';
+import Typewriter from '../components/Typewriter';
 
 const HomePage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,17 +47,22 @@ const HomePage = () => {
             Matheus Rodrigues
           </motion.h1>
 
-          <motion.p
-            className="relative flex flex-col sm:flex-row items-center md:items-start md:justify-start text-2xl font-bold text-white"
+          <motion.div 
+            className="relative w-full max-w-2xl"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <span className="text-gradient mr-2">I'm</span>
-            <span className="text-gradient overflow-hidden whitespace-nowrap max-w-[16ch] animate-typing">
-              DevOps Enginner
-            </span>
-          </motion.p>
+            <div className="w-full">
+              <div className="text-xl font-medium text-white text-center md:text-left leading-relaxed min-h-[120px] md:min-h-[80px]">
+                <Typewriter 
+                  text="Hi, welcome to my portfolio, feel free to explore. Contact me through my socials."
+                  delay={60}
+                  className="text-gradient inline-block"
+                />
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
