@@ -1,27 +1,36 @@
 # Build stage
-FROM node:20-alpine as frontend-builder
+FROM node:20-alpine as builder
 WORKDIR /app
 
-# Copy package files
+# Install dependencies first for better caching
 COPY package*.json ./
-# Install dependencies
-RUN npm install
+RUN npm ci --only=production
 
 # Copy source code
 COPY . .
+
 # Build the app
 RUN npm run build
 
-# Production stage (kept for backward compatibility)
+# Production stage
 FROM nginx:stable-alpine
 
-# Copy built assets from build stage
-COPY --from=frontend-builder /app/dist /usr/share/nginx/html
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy nginx config
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/
 
-# Expose port 80 (Nginx default)
+# Copy built files
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Set permissions
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chmod -R 755 /usr/share/nginx/html
+
+# Use non-root user
+USER nginx
+
 EXPOSE 80
 
 # Start Nginx
