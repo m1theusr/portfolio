@@ -1,5 +1,5 @@
 # Stage 1: Build the frontend
-FROM node:18-alpine as frontend-builder
+FROM node:20-alpine as frontend-builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -13,7 +13,7 @@ FROM nginx:stable-alpine
 RUN apk add --no-cache certbot openssl
 
 # Create necessary directories
-RUN mkdir -p /etc/letsencrypt/live/yourdomain.com
+RUN mkdir -p /etc/letsencrypt/live/m1theus.ddns.net
 RUN mkdir -p /var/www/certbot
 
 # Remove default nginx config
