@@ -1,49 +1,72 @@
 services:
+  # Proxy reverso Nginx com SSL
+  nginx-proxy:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: portfolio-nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - portfolio-network
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  
+  # Certbot para certificados SSL
+  certbot:
+    image: certbot/certbot:latest
+    container_name: portfolio-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    restart: unless-stopped
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  
+  # Frontend React/Vite
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: portfolio-frontend
-    ports:
-      - "3000:80"
+    # Não expor porta diretamente, o acesso será via proxy reverso
+    # ports:
+    #   - "3000:80"
     restart: unless-stopped
     depends_on:
       - backend
     networks:
       - portfolio-network
-    # Criar um volume para desenvolvimento - descomente se quiser desenvolvimento ao vivo
-    # volumes:
-    #   - ./frontend:/app
-    #   - /app/node_modules
-    # Adicionar configuração para o frontend acessar o backend via proxy
-    environment:
-      # Esta variável permite que o React saiba que está rodando no Docker
-      - VITE_API_URL=http://localhost:4000
-
-  # Configurar o Nginx para fazer proxy das requisições /api para o backend
-  # Vamos adicionar um nginx.conf personalizado no frontend
     volumes:
       - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    environment:
+      # Apontar para o backend via rede interna do Docker
+      - VITE_API_URL=http://backend:4000
 
+  # Backend NestJS
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: portfolio-backend
-    ports:
-      - "4000:4000"
+    # Não expor porta diretamente, o acesso será via proxy reverso
+    # ports:
+    #   - "4000:4000"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
       - PORT=4000
-      # Configurar CORS para permitir requisições do frontend
-      - CORS_ORIGIN=http://localhost:3000
+      # Atualizar CORS para permitir requisições do domínio
+      - CORS_ORIGIN=https://m1theus.ddns.net
     networks:
       - portfolio-network
-    # Criar um volume para desenvolvimento - descomente se quiser desenvolvimento ao vivo
-    # volumes:
-    #   - ./backend:/app
-    #   - /app/node_modules
 
 networks:
   portfolio-network:
