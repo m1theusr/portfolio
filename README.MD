@@ -31,8 +31,6 @@ O projeto está dividido em duas partes principais:
 ### Pré-requisitos
 - Node.js (versão 14 ou superior)
 - npm ou yarn
-- PostgreSQL/MongoDB (dependendo do banco escolhido)
-
 ### Frontend
 
 ```bash
@@ -75,13 +73,6 @@ yarn start:dev
 - **Habilidades** - Lista de tecnologias e competências
 - **Experiência** - Histórico profissional
 - **Contato** - Formulário de contato integrado com o backend
-
-## 🔗 Links Importantes
-
-- [Frontend - Live Demo](#)
-- [Backend - API Docs](#)
-- [LinkedIn](#)
-- [GitHub](#)
 
 ## 📝 Licença
 
