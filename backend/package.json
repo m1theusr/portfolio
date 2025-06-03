@@ -2,6 +2,7 @@
   "name": "portfolio-backend",
   "version": "1.0.0",
   "description": "Backend for portfolio application",
+  "license": "MIT",
   "scripts": {
     "start": "nest start",
     "start:dev": "nest start --watch",

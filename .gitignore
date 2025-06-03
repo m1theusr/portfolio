@@ -7,12 +7,25 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-yarn.lock
-package-lock.json
+# Node.js
+node_modules/*
+
+# Frontend
+frontend/node_modules/*
+frontend/dist/*
+frontend/dist-ssr/*
+frontend/*.local
+frontend/yarn.lock
+frontend/package-lock.json
+
+# Backend
+backend/node_modules/*
+backend/dist/*
+backend/dist-ssr/*
+backend/*.local
+backend/yarn.lock
+backend/package-lock.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
