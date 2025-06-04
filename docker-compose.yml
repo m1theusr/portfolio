@@ -3,7 +3,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    container_name: portfolio-nginx-proxy
+    container_name: nginx-proxy
     ports:
       - "80:80"
       - "443:443"
@@ -12,7 +12,7 @@ services:
       - frontend
       - backend
     networks:
-      - portfolio-network
+      - shared-network
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:rw
       - ./certbot/conf:/etc/letsencrypt:rw
@@ -21,7 +21,7 @@ services:
   
   certbot:
     image: certbot/certbot:latest
-    container_name: portfolio-certbot
+    container_name: certbot
     volumes:
       - ./certbot/conf:/etc/letsencrypt:rw
       - ./certbot/www:/var/www/certbot:ro
@@ -32,14 +32,14 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: portfolio-frontend
+    container_name: frontend
     ports:
-      - "5000:5000"
+      - "5000:80"
     restart: unless-stopped
     depends_on:
       - backend
     networks:
-      - portfolio-network
+      - shared-network
     environment:
       - VITE_API_URL=http://backend:4000
 
@@ -47,7 +47,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: portfolio-backend
+    container_name: backend
     ports:
       - "4000:4000"
     restart: unless-stopped
@@ -56,8 +56,8 @@ services:
       - PORT=4000
       - CORS_ORIGIN=https://m1theus.ddns.net
     networks:
-      - portfolio-network
+      - shared-network
 
 networks:
-  portfolio-network:
+  shared-network:
     driver: bridge
